@@ -1,0 +1,12 @@
+.item img {
+    width:100%;
+    height:360px;
+  }
+
+  .hov{
+    opacity: 0.85;
+  }
+  
+  .hov:hover{
+    opacity: 1;
+  }

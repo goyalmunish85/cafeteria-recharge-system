@@ -1,0 +1,58 @@
+<!-- 
+
+<!-- <div class="row">
+    <div class="col-md-6">
+        <img >
+    </div>
+    <div class="col-md-6">
+    </div>
+</div> -->
+
+
+<div class="container">
+        <div class="row" *ngIf="item">
+        <div class="col-md-6">
+              <img src="{{BaseURL + item.image}}" class="img-responsive" style="width:70%" alt="Image">
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <h2>{{item.name}}</h2>
+          </div>
+          <div class="row">
+              <p>{{item.description}}</p>
+            </div>
+            <div class="row">
+                <p>{{item.category}}</p>
+              </div>
+              <div class="row">
+                  <h2>Price: {{item.price}}</h2>
+                </div>
+                 <div class="row">
+                    <div class="col-12 col-md-6">
+                        <form [formGroup]="addToCartForm" >
+                            <div class="form-group row">
+                                <label for="quantity" class="col-md-4 col-form-label">Quantity:</label>
+                                <div class="col-md-8">
+                                    <input type="text" formControlName="quantity"  class="form-control"id="quantity" name="quantity" placeholder="Quantity">
+                                </div>
+                            </div>
+                          <div class="form-group row">
+                              <label for="description" class="col-md-4 col-form-label">Description:</label>
+                              <div class="col-md-8">
+                              <textarea class="form-control" formControlName="orderdescription"  rows="5" id="description"></textarea>
+                          </div>
+                        </div>
+      
+                          <div class="form-group row">
+                              <div class="col-md-offset-4 col-md-10">
+                                  <button (click)="addToCart()" class="btn btn-primary btn-block">Add</button>
+                              </div>
+                          </div>
+                    </form>
+                    </div>
+                
+              </div>
+        </div>
+       
+      </div>
+    
