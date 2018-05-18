@@ -14,12 +14,6 @@ import 'hammerjs';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { WhatsnewComponent } from './whatsnew/whatsnew.component';
-import { LunchComponent } from './lunch/lunch.component';
-import { BreakfastComponent } from './breakfast/breakfast.component';
-import { SnacksComponent } from './snacks/snacks.component';
-import { DinnerComponent } from './dinner/dinner.component';
-import { BeveragesComponent } from './beverages/beverages.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 import { MenuService } from './services/menu.service';
@@ -39,6 +33,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -55,12 +50,6 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    WhatsnewComponent,
-    LunchComponent,
-    BreakfastComponent,
-    SnacksComponent,
-    DinnerComponent,
-    BeveragesComponent,
     ItemdetailsComponent,
     CartComponent,
     ContactusComponent,
@@ -68,7 +57,8 @@ const routes: Routes = [
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,AgmCoreModule.forRoot({

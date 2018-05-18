@@ -1,0 +1,27 @@
+
+   <div class="container">    
+    <!-- <div class="row">
+      <div  class="col-sm-3" *ngFor = "let menuItem of menuItems" [routerLink]="['/item-detail', menuItem.id]">
+        <div class="panel panel-default">
+          <div class="panel-heading">{{menuItem.name}}</div>
+          <div class="panel-body" style="max-height:30%">
+            <img src="{{BaseURL + menuItem.image}}" class="img-responsive" alt="Image">
+          </div>
+          <div class="panel-footer">Rs. {{menuItem.price}} </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="container-fluids">
+  <div class="row">
+    <div class="col-md-3 col-sm-3" *ngFor = "let menuItem of menuItems">
+      <div class="thumbnail">
+          <img src="{{BaseURL + menuItem.image}}"  style="width:350px;height:200px">
+            <div class="caption">
+              <h5 id="item">{{menuItem.name}}</h5><p id="item-details">₹ {{menuItem.price}} </p>
+              <button (click)="addToCart($event, menuItem)" class="btn">Add to Cart</button>
+            </div>           
+     </div>
+    </div>
+  </div>
+</div>
+</div>

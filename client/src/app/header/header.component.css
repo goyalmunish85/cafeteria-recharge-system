@@ -3,3 +3,16 @@ a{
     text-decoration: none;
 }
 
+span{
+    font-size:25px;
+    color:white;
+}
+
+li a{
+    font-size:20px;
+    color:white;
+}
+
+.dropdown-menu{
+    background-color: #83ceeb
+}

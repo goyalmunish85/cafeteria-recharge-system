@@ -1,11 +1,3 @@
-<!-- <nav class="navbar">
-    <div class="container">
-      <a class="navbar-brand" href="#">Your online store</a>
-      <div class="navbar-right">
-        <div class="container minicart"></div>
-      </div>
-    </div>
-  </nav> -->
   
   <div class="container-fluid breadcrumbBox text-center">
     <ol class="breadcrumb">
@@ -14,17 +6,14 @@
       <li><a href="#">Payment</a></li>
     </ol>
   </div>
-  
   <div class="container text-center">
 
       <div class="col-md-5 col-sm-12">
           <div class="bigcart"></div>
           <h1>Your shopping cart</h1>
-          <p>
-           
+          <p>  
           </p>
         </div>
-    
     <div class="col-md-7 col-sm-12 text-left">
       <ul>
         <li class="row list-inline columnCaptions">
@@ -34,7 +23,7 @@
         </li>
         <li class="row" *ngFor = "let cartItem of cartItems">
           <span class="quantity">{{cartItem.quantity}}</span>
-          <span class="itemName">{{cartItem.name}}</span>
+          <span class="itemName">{{cartItem.item[0].name}}</span>
      
         <span class="dropdown popbtn"><a class="dropdown-toggle arrow" data-toggle="dropdown" routerLinkActive="active"></a>
           <ul class="dropdown-menu">
@@ -44,7 +33,7 @@
          
         </span>
           
-          <span class="price">₹{{cartItem.price}}</span>
+          <span class="price">₹{{cartItem.item[0].price}}</span>
         </li>
         
         <li class="row totals">
@@ -53,6 +42,7 @@
           <span class="order"> <a class="text-center"  (click)="placeorder($event, cartItems)">Place Order
           </a></span>
         </li>
+       
       </ul>
     </div>
 

@@ -5,8 +5,7 @@ import { NgForm } from '@angular/forms';
 
 import { CartService } from '../services/cart.service';
 import 'rxjs/add/operator/switchMap';
-
-
+import {AuthenticationService} from '../authentication.service';
 import { FormBuilder, FormGroup ,Validators } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +19,7 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 })
 export class CartComponent implements OnInit, OnChanges  {
  
-  constructor(private restangular: Restangular,private cartService: CartService ) { }
+  constructor(private restangular: Restangular,private cartService: CartService,private auth: AuthenticationService ) { }
   cartItems;
   public total: number = 0;
   ngOnInit(){
@@ -28,28 +27,33 @@ export class CartComponent implements OnInit, OnChanges  {
     // for(var i=0;i<this.cartItems.length;i++){
     //     this.total += this.cartItems[i].price * this.cartItems[i].quantity; 
     // }
-    this.loaddata();
+    this.auth.getCartItems().subscribe(cart => this.cartItems = cart);
+
   }
 
   placeorder(event,c) {
   //  console.log(c[0].id);
-      this.restangular.all('orders').customPOST({"item": this.cartItems});
       
-      for(var i=0;i<c.length;i++){
-        this.restangular.one('cart',c[i].id).remove();
-      }
   }
-  loaddata(){
-    this.cartService.getCartItems().subscribe(cartItems => this.cartItems = cartItems);
-  }
+  
     ngOnChanges(){
 
     }
 
-  deleteitem(event: any, p: any) {
+  deleteitem(event: any, item: any) {
     
-    this.restangular.one('cart',p.id).remove();
-    this.loaddata();
+    this.auth.deleteCartItem(item._id)
+      .subscribe(response => {
+        let status = response.status;
+        //alert(`the response is : ${response.body.name}`);
+        console.log(response);
+        this.auth.getCartItems().subscribe(cart => this.cartItems = cart);
+
+      }, error => {
+        alert(`Error is : ${error.error.message}`);
+        console.log(error);
+      })
+   
   }
   
 }

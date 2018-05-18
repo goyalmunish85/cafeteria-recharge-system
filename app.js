@@ -23,12 +23,13 @@ require('./api/config/passport');
 
 // [SH] Bring in the routes for the API (delete the default routes)
 var routesApi = require('./api/routes/index');
-
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));

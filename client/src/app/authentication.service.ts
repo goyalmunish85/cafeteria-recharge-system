@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
-
+import { Item } from './shared/item';
+import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 export interface UserDetails {
   _id: string;
   email: string;
@@ -26,7 +27,7 @@ export interface TokenPayload {
 export class AuthenticationService {
   private token: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,private processHTTPMsgService: ProcessHttpmsgService) {}
 
   private saveToken(token: string): void {
     localStorage.setItem('mean-token', token);
@@ -63,7 +64,7 @@ export class AuthenticationService {
 
   private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
     let base;
-
+    console.log(this.getToken());
     if (method === 'post') {
       base = this.http.post(`/api/${type}`, user);
     } else {
@@ -79,6 +80,20 @@ export class AuthenticationService {
       })
     );
 
+    return request;
+  }
+  public addtocart(cart:any): Observable<any> {
+    let base;
+    console.log(this.getToken());
+    base = this.http.post(`/api/cart`, cart, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
     return request;
   }
 
@@ -98,5 +113,52 @@ export class AuthenticationService {
     this.token = '';
     window.localStorage.removeItem('mean-token');
     this.router.navigateByUrl('/');
+  }
+  public getCartItems(): Observable<Item[]> {
+    let base;
+    base = this.http.get('/api/cart', { headers: { Authorization: `Bearer ${this.getToken()}` }});
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
+    return request;
+  }
+
+  public deleteCartItem(id: any): Observable<Response>{
+    let base;
+    base = this.http.delete('/api/cart/'+id, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
+    return request;
+  }
+
+  public getItems(type: any): Observable<Item[]> {
+    
+
+    let base;
+   
+      base = this.http.get('/api/items/menu/'+ type, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+   
+
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
+
+    return request;
   }
 }
