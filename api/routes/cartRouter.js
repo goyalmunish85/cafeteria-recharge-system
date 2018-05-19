@@ -56,7 +56,7 @@ cartRouter.route('/')
 
 cartRouter.route('/empty')
 .delete((req, res, next) => {
-    Cart.deleteMany({ u_id : mongoose.Types.ObjectId(req.payload._Id)})
+    Cart.deleteMany({ u_id : mongoose.Types.ObjectId(req.payload._id)})
     .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');

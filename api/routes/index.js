@@ -3,7 +3,6 @@ var router = express.Router();
 var jwt = require('express-jwt');
 
 
-var pizzaRouter = require('./pizzaRouter');
 var cartRouter = require('./cartRouter');
 var orderRouter = require('./orderRouter');
 var feedbackRouter = require('./feedbackRouter');
@@ -22,9 +21,8 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 // authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
-router.use('/pizzas', pizzaRouter);
 router.use('/cart', auth, cartRouter);
-router.use('/orders', orderRouter);
+router.use('/orders',auth, orderRouter);
 router.use('/feedback', feedbackRouter);
 router.use('/items', itemRouter);
 module.exports = router;

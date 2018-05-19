@@ -27,12 +27,60 @@ export class CartComponent implements OnInit, OnChanges  {
     // for(var i=0;i<this.cartItems.length;i++){
     //     this.total += this.cartItems[i].price * this.cartItems[i].quantity; 
     // }
-    this.auth.getCartItems().subscribe(cart => this.cartItems = cart);
+    this.auth.getCartItems().subscribe(cart => {this.cartItems = cart;
+   this.count(cart);
+    });
 
   }
+  o;
+  count(cart: any){
+    this.total = 0;
+    for(var i = 0; i < cart.length; i++){
+      this.total += cart[i].quantity*cart[i].item[0].price;
+    }
+    console.log(this.total);
+  }
+  item;
+  placeorder() {
+    this.o = {
+      u_id: '',
+      status: "Placed",
+      bill: this.total,
+      items: []
+    }
+    console.log(this.cartItems);
+    for (var c = 0; c < this.cartItems.length; c++) {
+      this.item = {
+        i_id: this.cartItems[c].i_id,
+        quantity: this.cartItems[c].quantity
+      }
+      this.o.items.push(this.item);
+    }
+    console.log(this.o);
+    
+    this.auth.postOrder(this.o)
+      .subscribe(response => {
+        let status = response.status;
+        //alert(`the response is : ${response.body.name}`);
+        console.log(response);
+      }, error => {
+        alert(`Error is : ${error.error.message}`);
+        console.log(error);
+      })
 
-  placeorder(event,c) {
-  //  console.log(c[0].id);
+      this.auth.deleteCart()
+      .subscribe(response => {
+        let status = response.status;
+        //alert(`the response is : ${response.body.name}`);
+        console.log(response);
+      }, error => {
+        alert(`Error is : ${error.error.message}`);
+        console.log(error);
+      })
+
+      this.auth.getCartItems().subscribe(cart => {this.cartItems = cart;
+        this.count(cart);});
+alert("Your order Succesfully Placed");
       
   }
   
@@ -47,7 +95,8 @@ export class CartComponent implements OnInit, OnChanges  {
         let status = response.status;
         //alert(`the response is : ${response.body.name}`);
         console.log(response);
-        this.auth.getCartItems().subscribe(cart => this.cartItems = cart);
+        this.auth.getCartItems().subscribe(cart => {this.cartItems = cart;
+          this.count(cart);});
 
       }, error => {
         alert(`Error is : ${error.error.message}`);

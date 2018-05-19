@@ -10,16 +10,18 @@ var feedbackSchema = new Schema({
         type: String,
         required: true
     },
-    u_id:{
-    	 type: Schema.ObjectId,
-        required: true
-    },
     email: {
         type: String,
         required: true
     },
-    feedback: {
+    fb: {
         type: String
+    },
+    areaCode:{
+        type: Number
+    },
+    tel:{
+        type: Number
     },
     contactBack: {
         type: Boolean,

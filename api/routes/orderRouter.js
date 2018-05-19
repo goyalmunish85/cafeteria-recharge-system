@@ -28,6 +28,8 @@ orderRouter.route('/')
     .catch((err) => next(err));
 })
 .post((req, res, next) => {
+    req.body.u_id = req.payload._id;
+    console.log(req.body);
     Order.create(req.body)
     .then((item) => {
         console.log('Order Created ', item);

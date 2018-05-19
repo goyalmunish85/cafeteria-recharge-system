@@ -4,10 +4,12 @@
     padding-right: 15px;
   }
   #item{
-  	font-style: italic;
+    text-align: center;
+    font-size: 25px;
   }
   #item-details{
-  	color:gray;
+    color:gray;
+    font-size:18px;
   }
   .thumbnail:hover{
   	color:lightgray;
@@ -20,4 +22,8 @@
   .btn{
     background-color: #f08573;
     color:white;
+    margin-left: 7%;
   }
+.qty{
+  padding-top: 3%;
+}

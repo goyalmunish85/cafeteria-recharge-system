@@ -8,10 +8,5 @@ import { CartComponent } from '../cart/cart.component';
 import { ItemdetailsComponent } from '../itemdetails/itemdetails.component';
 
 export const routes: Routes = [
-  { path: 'home',  component: HomeComponent },
-  { path: 'menu/:type',     component: MenuComponent },
-  { path: 'cart',     component: CartComponent },
-  { path: 'contactus',     component: ContactusComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'item-detail/:id', component: ItemdetailsComponent }
+ 
 ];

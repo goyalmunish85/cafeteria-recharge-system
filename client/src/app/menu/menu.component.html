@@ -1,6 +1,5 @@
-
-   <div class="container">    
-    <!-- <div class="row">
+<div class="container">
+  <!-- <div class="row">
       <div  class="col-sm-3" *ngFor = "let menuItem of menuItems" [routerLink]="['/item-detail', menuItem.id]">
         <div class="panel panel-default">
           <div class="panel-heading">{{menuItem.name}}</div>
@@ -11,17 +10,24 @@
         </div>
       </div>
     </div> -->
-    <div class="container-fluids">
-  <div class="row">
-    <div class="col-md-3 col-sm-3" *ngFor = "let menuItem of menuItems">
-      <div class="thumbnail">
-          <img src="{{BaseURL + menuItem.image}}"  style="width:350px;height:200px">
-            <div class="caption">
-              <h5 id="item">{{menuItem.name}}</h5><p id="item-details">₹ {{menuItem.price}} </p>
-              <button (click)="addToCart($event, menuItem)" class="btn">Add to Cart</button>
-            </div>           
-     </div>
+  <div class="container-fluids">
+    <div class="row">
+      <div class="col-md-3 col-sm-3" *ngFor="let menuItem of menuItems">
+        <div class="thumbnail">
+          <img src="{{BaseURL + menuItem.image}}" style="width:350px;height:200px">
+          <div class="caption">
+            <h5 id="item">{{menuItem.name}}</h5>
+            <div>
+              <div class="col-sm-5" id="item-details">₹ {{menuItem.price}} </div>
+              <div class="qty col-sm-2">Qty:</div>
+              <div class="col-sm-5">
+                <input type="number" class="form-control" min="1" max="10" id="quantity" [(ngModel)]="qty" name="quantity">
+              </div>
+            </div>
+            <button (click)="addToCart($event, menuItem)" class="btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </div>

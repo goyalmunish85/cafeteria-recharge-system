@@ -39,7 +39,11 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] }
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'home',  component: HomeComponent },
+  { path: 'menu/:type',     component: MenuComponent },
+  { path: 'cart',     component: CartComponent,  canActivate: [AuthGuardService] },
+  { path: 'contactus',     component: ContactusComponent }
 ];
 
 

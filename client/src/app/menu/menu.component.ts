@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit {
   menuItems;
   itype;
   cart: Cart;
+  qty = 1;
   constructor(private router: Router, private fb: FormBuilder,
      private auth: AuthenticationService ,private route: ActivatedRoute,private menuService: MenuService,
     @Inject('BaseURL') private BaseURL) { }
@@ -35,12 +36,13 @@ export class MenuComponent implements OnInit {
       this.cart = {
         u_id : "",
         i_id : item._id,
-        quantity: 1 
+        quantity: this.qty 
       }
       this.auth.addtocart(this.cart)
       .subscribe(response => {
         let status = response.status;
         //alert(`the response is : ${response.body.name}`);
+        alert("Added Successfully");
        
       }, error => {
         alert(`Error is : ${error.error.message}`);

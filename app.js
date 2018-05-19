@@ -1,10 +1,3 @@
-/*
-
-  There are some minor modifications to the default Express setup
-  Each is commented and marked with [SH] to make them easy to find
-
- */
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

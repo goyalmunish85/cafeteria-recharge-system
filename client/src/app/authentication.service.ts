@@ -82,10 +82,52 @@ export class AuthenticationService {
 
     return request;
   }
+  public postOrder(cart:any): Observable<any> {
+    let base;
+    console.log(this.getToken());
+    base = this.http.post(`/api/orders`, cart, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
+    return request;
+  }
+  public deleteCart(): Observable<any> {
+    let base;
+    console.log(this.getToken());
+    base = this.http.delete(`/api/cart/empty`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
+    return request;
+  }
   public addtocart(cart:any): Observable<any> {
     let base;
     console.log(this.getToken());
     base = this.http.post(`/api/cart`, cart, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+    const request = base.pipe(
+      map((data: TokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
+    return request;
+  }
+  public sendFeedback(feedback:any): Observable<any> {
+    let base;
+    console.log(this.getToken());
+    base = this.http.post(`/api/feedback`, feedback, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     const request = base.pipe(
       map((data: TokenResponse) => {
         if (data.token) {

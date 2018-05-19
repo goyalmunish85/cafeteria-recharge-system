@@ -3,17 +3,13 @@ const Schema = mongoose.Schema;
 require('mongoose-currency').loadType(mongoose);
 var Currency = mongoose.Types.Currency;
 
-var orderPizzaSchema = new Schema({
-   p_id: {
+var orderItemSchema = new Schema({
+   i_id: {
         type: Schema.ObjectId,
         required: true
     },
     quantity: {
         type: Number,
-        required: true
-    },
-    orderdescription:{
-        type: String,
         required: true
     }
 }, {
@@ -33,7 +29,7 @@ var orderSchema = new Schema({
         required: true,
         min: 0
     },
-    pizzas: [orderPizzaSchema]
+    items: [orderItemSchema]
 },{
     timestamps: true
 });

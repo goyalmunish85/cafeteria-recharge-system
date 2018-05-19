@@ -3,6 +3,9 @@ import { Component,ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { NgForm } from '@angular/forms';
+import {AuthenticationService} from '../authentication.service';
+
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
@@ -24,9 +27,40 @@ export class ContactusComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,private auth: AuthenticationService
   ) {}
-
+  
+   
+feedback;
+submit(form: NgForm) {
+ 
+  this.feedback = {
+    
+    firstname: form.value.firstname,
+    lastname: form.value.lastname,
+    areaCode: form.value.areaCode,
+    tel: form.value.tel,
+    email: form.value.email,
+    fb: form.value.userFeedback,
+    contactback:form.value.contactback
+  }
+  console.log(this.feedback);
+  // let message = "Added!";
+  // let action = "Done";
+  // this.snackBar.open(message, action, {
+  //   duration: 2000,
+  // });
+  this.auth.sendFeedback(this.feedback)
+  .subscribe(response => {
+    let status = response.status;
+    //alert(`the response is : ${response.body.name}`);
+    alert("Added Successfully");
+   
+  }, error => {
+    alert(`Error is : ${error.error.message}`);
+    console.log(error);
+  })
+}
   ngOnInit() {
     //set google maps defaults
     this.zoom = 18;

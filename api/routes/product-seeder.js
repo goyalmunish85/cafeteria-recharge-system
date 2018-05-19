@@ -88,56 +88,56 @@ new Items({
   new Items({
     name: 'Coke',
     image: 'images/coke.jpg',
-    category: '',
+    category: 'Veg',
     price: 35,
     itemtype: 'beverages'
   }),
   new Items({
     name: 'Lassi',
     image: 'images/lassi.jpg',
-    category: '',
+    category: 'Veg',
     price: 25,
     itemtype: 'beverages'
   }),
   new Items({
     name: 'Fruit Beer',
     image: 'images/fb.jpg',
-    category: '',
+    category: 'Veg',
     price: 25,
     itemtype: 'beverages'
   }),
   new Items({
     name: 'Tea',
     image: 'images/tea.jpg',
-    category: '',
+    category: 'Veg',
     price: 10,
     itemtype: 'beverages'
   }),
   new Items({
     name: 'Coffee',
     image: 'images/coffee.jpg',
-    category: '',
+    category: 'Veg',
     price: 10,
     itemtype: 'beverages'
   }),
   new Items({
     name: 'Ice Tea',
     image: 'images/it.jpg',
-    category: '',
+    category: 'Veg',
     price: 40,
     itemtype: 'beverages'
   }),
   new Items({
     name: 'Juice',
     image: 'images/juice.jpg',
-    category: '',
+    category: 'Veg',
     price: 20,
     itemtype: 'beverages'
   }),
   new Items({
     name: 'Fanta',
     image: 'images/fanta.jpg',
-    category: '',
+    category: 'Veg',
     price: 35,
     itemtype: 'beverages'
   }),
