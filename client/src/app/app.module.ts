@@ -66,7 +66,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,AgmCoreModule.forRoot({
-      apiKey: "AIzaSyDgyyagm2swP-wXHSamodscFu9JYKABrUE",
+      apiKey: "",
       libraries: ["places"]
     }),
     BrowserAnimationsModule,HttpClientModule,
